@@ -7,7 +7,7 @@
 | Latent statistics | `scripts/data/latent_stats_v1.py` | Training-period native latents → per-channel `stats.pth` |
 | Diffusion training | `experiments/diffusion/train_diff_1h.py`, `appa/diffusion.py`, `appa/nn/vit.py` | Standardized six-frame windows → denoiser |
 | Satellite Encoders | `experiments/observations/train_obs2era.py`, `risda/models/encoders.py` | Exact-hour TB, mask, zenith → ERA latent |
-| CONVI Encoder | `experiments/observations/train_convi_cressman_obs2era.py`, `convi_obs2era_data.py` | QC SURF/ICOADS + Cressman input → ERA latent |
+| CONVI Encoder | `experiments/observations/train_convi_cressman_obs2era.py`, `convi_obs2era_data.py` | SURF/ICOADS observations with interpolated inputs → ERA latent |
 | Forward controls | `experiments/observations/train_era5_latent_to_tb.py`, `risda/models/decoders.py` | ERA latent + zenith → standardized satellite TB |
 | Encoder calibration | `risda/calibrate.py` | Encoder–truth residuals on observed latent positions → channel/spatial moments + MSE ordering |
 | Decoder calibration | `risda/calibrate_decoder.py` | Forward predictions–observations → per-channel moments and equal-source constant |

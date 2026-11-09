@@ -27,7 +27,7 @@
     {
       "export": "README.md",
       "origin": "release_interface",
-      "export_sha256": "d87d7839c0afb008dde48821f668e94d33f2ced8728ed28cf3dc51686f625035",
+      "export_sha256": "325fdfef862fcd178fa2f01f86af84a4e43afca3ce13bc146c5b508ed67ad9ef",
       "modified_for_release": true
     },
     {
@@ -309,37 +309,37 @@
     {
       "export": "docs/data.md",
       "origin": "release_interface",
-      "export_sha256": "6aa4ad6537b7914255432c3f9742a60209a79364e1d8bfbb60259abb63eadbf4",
+      "export_sha256": "a95ae642a755369701a312a5dcb8d5798ecfba08a0e96247e74e010b02abc400",
       "modified_for_release": true
     },
     {
       "export": "docs/pipeline.md",
       "origin": "release_interface",
-      "export_sha256": "48116bb192d55b030915ff4be615facf86fd95f110707fd7813bcba20a42f941",
+      "export_sha256": "3f331a0b922d2d58dd24ab8ebb45335edc006587c3e61c72fd4811ae05f548d3",
       "modified_for_release": true
     },
     {
       "export": "docs/protocols.md",
       "origin": "release_interface",
-      "export_sha256": "dbb6806fc70ea392a7ad87bd77815f28d9264b09eb2860101b9b2be7d4bd34f1",
+      "export_sha256": "12c8ca79bba7038de03ad340de17a119bbfcecdf82aeae1932c246a70b483cff",
       "modified_for_release": true
     },
     {
       "export": "docs/release-notes.md",
       "origin": "release_interface",
-      "export_sha256": "fae3edf1a0a09473ea037ebe5046605a92b8fa780d3f49dd48c904301170338a",
+      "export_sha256": "756f7eb949c773f800e16d7d20f9d0d3a878b0b5cc0dbf5acb8347b7a2a0bd43",
       "modified_for_release": true
     },
     {
       "export": "docs/training.md",
       "origin": "release_interface",
-      "export_sha256": "5460a33ba6422d8d78b41a88ea09812d52c6f5158049b642a558829ee838e3f1",
+      "export_sha256": "2b8c5326f1b2f9e9c1432329fa8ac0f8c182c6d596b6ee6b1ff1d82279d8b659",
       "modified_for_release": true
     },
     {
       "export": "docs/validation.md",
       "origin": "release_interface",
-      "export_sha256": "787e88994bbd887d27b6cc68dedf73dc88b6233f536be54e9d30f6a181574d92",
+      "export_sha256": "2f74344c6138c85610f0abf971eda59669b92580ee328eea7ace118aa515b5a2",
       "modified_for_release": true
     },
     {

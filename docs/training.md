@@ -14,7 +14,7 @@ Default architecture and schedules:
 | Diffusion | DiT, 6 hourly frames, frame 4 at 00/06/12/18 UTC, 125000 updates, global batch 256, microbatch 4 |
 | Observation Encoders | 100000 updates, global batch 8, microbatch 1, frozen ERA Decoder |
 | Satellite inputs | Standardized TB + union mask + cosine zenith |
-| CONVI inputs | Four QC values + four raw masks, preprocessed into nine Cressman Encoder channels |
+| CONVI inputs | Four surface variables + four observation masks, preprocessed into nine encoder input channels |
 
 AE and diffusion training use 2017–2024 with Q1 2025 validation. Observation
 training uses matched timestamps before 2025 and Q1 2025 validation. Latent dumping

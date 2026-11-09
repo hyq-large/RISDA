@@ -27,7 +27,7 @@ separate `output_root`. The default PCGrad comparison uses fixed ordering.
 
 For a valid observed latent position, compute
 `e = (Encoder(obs) − mean)/raw_std − (ERA_latent − mean)/raw_std`.
-Collect float64 moments on the original QC observation mask pooled onto the
+Collect float64 moments on the original observation mask pooled onto the
 latent grid (`mask_frac=0`: any observed pixel gives support):
 
 ```text

@@ -1,7 +1,7 @@
 # Prepared data contract
 
 The public pipeline begins with prepared arrays and gridded observations. Raw
-satellite download, instrument calibration, upstream quality control and initial
+satellite download, instrument calibration, preprocessing and initial
 gridding are external; this repository does not claim to reproduce those steps.
 
 Default paths are below `RISDA_DATA_ROOT` (override through the documented
@@ -40,12 +40,13 @@ for MWTS/MWHS).
 CONVI filenames end in `_YYYYMMDDHH.nc`. SURF and ICOADS contain the four surface
 variables; pressure is converted from hPa to Pa. Values are standardized with
 the **ERA5 mean/std**, not an independent CONVI normalization. SURF wins collocated
-conflicts. Missingness is preserved per channel. Cressman interpolation changes
-Encoder inputs without expanding the raw QC supervision/guidance support.
-QC directory basenames are validated by the evaluator; keep `surf_qc`,
+conflicts. Missingness is preserved per channel. Interpolation changes
+encoder inputs while supervision and guidance remain restricted to the original
+observation locations.
+Observation directory basenames are validated by the evaluator; keep `surf_qc`,
 `icoads_qc` and `temp_time_qc` when adapting paths.
 
-All valid QC surface observations are available to CONVI training,
+All valid surface observations are available to CONVI training,
 calibration and guidance. TEMP is never used in guidance and is evaluated at
 all valid upper-air records, normally at 00/12 UTC. TEMP evaluation can be
 disabled with `convi.metrics_include_temp=false`; the evaluator then requires

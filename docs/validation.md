@@ -3,7 +3,7 @@
 Verified on 2026-11-09 from the isolated source checkout:
 
 - **198 regression tests passed**, covering fusion, sampling, exact-hour data
-  pairing, normalization, QC masks, calibration caches, ERA5 AE save/reload,
+  pairing, normalization, observation masks, calibration caches, ERA5 AE save/reload,
   saved-run contracts and metrics. Tests for removed experiment/surface-split
   entrypoints were replaced with tests of the public workflow.
 - Calibration tests write complete bundles for the six-source default and an
