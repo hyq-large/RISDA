@@ -1,0 +1,52 @@
+defaults:
+  - optim: adamw
+
+# Native ERA latent dump used by the matching O2E encoder family.
+# Required contents: era5.h5 and ae/config.yaml.
+era_latent_dir: ???
+
+data:
+  contract: exact_hour_cos_satzen_v2
+  use_satzen: true
+  # Must match the complete date axis stored in era5.h5. The standard launchers
+  # use 6; scripts/train_direct_e2o_1h.sh overrides this to 1.
+  cadence_hours: 6
+  latent_file: era5.h5
+  # Not read during Direct E2O training. Retained as the physical-truth root
+  # used by residual diagnostics associated with the saved model config.
+  era_data_path: ${oc.env:RISDA_ERA5_6H}
+  sate_data_path: ${oc.env:RISDA_OBS_ROOT}
+  sate_standard_dir: ${oc.env:RISDA_MEAN_STD}
+  sate_name: atms
+  # Each target uses only the SATE file at exact ERA timestamp T. The decoder
+  # receives per-pixel cos(satellite zenith); no time-offset channel exists.
+
+output_dir: ${oc.env:RISDA_OUTPUT_ROOT}
+
+# One fresh decoder is trained per instrument. The architecture is shared
+# across runs, while all parameters and checkpoints remain independent.
+model:
+  zenith_hidden_channels: 64
+  hid_channels: [64, 128, 192, 256, 384, 512]
+  hid_blocks: [2, 2, 2, 2, 2, 2]
+  kernel_size: 3
+  ffn_factor: 1
+  dropout: 0.0
+  pixel_shuffle: true
+  checkpointing: true
+  identity_init: true
+
+train:
+  update_steps: 100000
+  batch_size: 1
+  batch_size_per_step: 8
+  num_workers: 8
+  pin_memory: true
+  persistent_workers: true
+  precision: float16
+  # Validation is hard-coded to 2025-01-01 through 2025-03-31.
+  log_interval: 50
+  valid_interval: 1000
+  save_interval: 2000
+
+wandb_entity: null

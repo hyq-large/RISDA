@@ -1,0 +1,13 @@
+name: "vit_large"
+arch: "vit"
+mod_features: 256
+hid_channels: 1024
+hid_blocks: 16
+ffn_factor: 4
+attention_heads: 8
+qk_norm: true
+rope: true
+patch_size: [2, 1, 1]
+window_size: null
+dropout: 0.0
+checkpointing: true

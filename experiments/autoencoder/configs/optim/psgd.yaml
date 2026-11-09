@@ -1,0 +1,11 @@
+name: "${.optimizer}_${.learning_rate}_${.scheduler}"
+optimizer: "psgd"
+betas: [0.9]
+precondition_frequency: 64
+precondition_size: 4096
+merge_dims: false
+learning_rate: 3e-5
+weight_decay: 0.0
+warmup: 0
+scheduler: "linear"
+grad_clip: 1

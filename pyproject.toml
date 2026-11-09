@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "risda"
+version = "0.1.0"
+description = "Multi-source data assimilation with latent diffusion priors and reliability-informed guidance"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "torch==2.5.1", "torchvision==0.20.1", "xformers==0.0.28.post3",
+  "numpy>=1.26,<2", "scipy>=1.11,<1.15", "pandas>=2.2,<3",
+  "h5py>=3.11,<4", "xarray>=2024.6,<2026", "h5netcdf>=1.3,<2",
+  "dask>=2024.6,<2026", "bottleneck>=1.4,<2", "zarr>=2.18,<3",
+  "einops>=0.8,<0.9", "hydra-core==1.3.2", "omegaconf==2.3.0",
+  "matplotlib>=3.9,<4", "cmocean>=4,<5", "torch-harmonics==0.7.3",
+  "cloudpickle>=3,<4", "dawgz==1.0.4", "heavyball==1.4.3",
+  "wandb>=0.17,<0.18", "tqdm>=4.66,<5",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<9", "ruff>=0.4,<1", "build>=1,<2"]
+
+[project.scripts]
+risda = "risda.__main__:main"
+
+[tool.setuptools.packages.find]
+include = ["appa*", "risda*", "experiments*", "scripts*"]
+
+[tool.setuptools.package-data]
+"*" = ["configs/*.yaml", "configs/*/*.yaml"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+

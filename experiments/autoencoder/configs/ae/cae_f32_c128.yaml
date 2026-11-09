@@ -1,0 +1,20 @@
+# Used by the 1h training line (train_1h.py). in_channels is overridden at
+# runtime from the dataset (69).
+name: "cae_f${.resize}c${.lat_channels}"
+shape: [720, 1440]
+resize: 32
+saturation: "softclip2"
+noise_level: 0.01
+lat_channels: 128
+hid_channels: [128, 256, 384, 512, 768, 1024]
+hid_blocks: [3, 3, 3, 3, 3, 3]
+pixel_shuffle: true
+ffn_factor: 1
+dropout: 0.0
+patch_size: [1, 1]
+checkpointing: false
+identity_init: true
+# Variational latent. When false (default) the AE is byte-identical to before.
+vae: false
+logvar_min: -10.0
+logvar_max: 10.0

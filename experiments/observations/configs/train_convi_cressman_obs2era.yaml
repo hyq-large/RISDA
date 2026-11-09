@@ -1,0 +1,60 @@
+defaults:
+- optim: adamw
+era_latent_dir: ${oc.env:RISDA_LATENT_DIR}
+data:
+  kind: convi
+  alignment_mode: convi_qc_to_convi_qc
+  era_data_path: ${oc.env:RISDA_ERA5_1H}
+  era_normalization:
+    source_mean_path: ${..era_data_path}/mean_std/era5_1h_mean.npy
+    source_std_path: ${..era_data_path}/mean_std/era5_1h_std.npy
+    target_mean_path: ${oc.env:RISDA_MEAN_STD}/mean_era5.npy
+    target_std_path: ${oc.env:RISDA_MEAN_STD}/std_era5.npy
+  surf_dir: ${oc.env:RISDA_OBS_ROOT}/convi/surf_qc
+  icoa_dir: ${oc.env:RISDA_OBS_ROOT}/convi/icoads_qc
+  mean_std_dir: ${oc.env:RISDA_MEAN_STD}
+  surface_preprocessing:
+    name: cressman
+    radius: 10
+    eps: 0.0001
+    confidence_ignore: 0
+output_dir: ${oc.env:RISDA_OUTPUT_ROOT}
+output_group: obs2era_1h
+id: obs2era_convi_cressman_r10_qc_to_qc
+model:
+  hid_channels:
+  - 64
+  - 128
+  - 192
+  - 256
+  - 384
+  - 512
+  hid_blocks:
+  - 2
+  - 2
+  - 2
+  - 2
+  - 2
+  - 2
+  kernel_size: 3
+  ffn_factor: 1
+  dropout: 0.0
+  pixel_shuffle: true
+  checkpointing: true
+  identity_init: true
+loss:
+  physical_weight: 1.0
+  latent_weight: 0.0
+  latent_mask_frac: 0.0
+  latent_standardize: false
+train:
+  update_steps: 100000
+  batch_size: 1
+  batch_size_per_step: 8
+  num_workers: 4
+  precision: float16
+  log_interval: 50
+  valid_interval: 1000
+  save_interval: 2000
+slurm_account: null
+wandb_entity: null

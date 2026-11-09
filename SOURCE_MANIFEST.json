@@ -1,0 +1,857 @@
+{
+  "version": 2,
+  "project": "RISDA",
+  "snapshot_date": "2026-11-09",
+  "scope": "Explicit source allowlist; data, weights, logs, Git history and credentials excluded",
+  "license_status": "Pending rights-holder selection and third-party provenance review",
+  "source_path_policy": "Model source paths are omitted; original source content hashes are retained.",
+  "files": [
+    {
+      "export": ".gitignore",
+      "origin": "release_interface",
+      "export_sha256": "9eef42b73708b2a40d0d0af03fb06ac066bb9ea760c79724f41a5321e3eaae6b",
+      "modified_for_release": true
+    },
+    {
+      "export": "MANIFEST.in",
+      "origin": "release_interface",
+      "export_sha256": "b29fb7e537a434114aef8d4f13560120d9803658a95ef8ce717a10c23e7dd6fb",
+      "modified_for_release": true
+    },
+    {
+      "export": "NOTICE.md",
+      "origin": "release_interface",
+      "export_sha256": "4f53734196cfc2f0c6c380a3a4d5b62bf35688da7863912777c6ba4d1e19b135",
+      "modified_for_release": true
+    },
+    {
+      "export": "README.md",
+      "origin": "release_interface",
+      "export_sha256": "d87d7839c0afb008dde48821f668e94d33f2ced8728ed28cf3dc51686f625035",
+      "modified_for_release": true
+    },
+    {
+      "source": "appa/__init__.py",
+      "export": "appa/__init__.py",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "export_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "modified_for_release": false
+    },
+    {
+      "source": "appa/config/__init__.py",
+      "export": "appa/config/__init__.py",
+      "source_sha256": "c67df7ef8abac87630ea273a4b2c4dead00573bf6ea1248d4aea0e06dff092ea",
+      "export_sha256": "615d42e6f1ea69f00a926a61e64bcc0570e766df39b65a6ba28386fc3fdfd977",
+      "modified_for_release": true
+    },
+    {
+      "source": "appa/config/hydra.py",
+      "export": "appa/config/hydra.py",
+      "source_sha256": "1255aedb630a65a4ae91ab55cb99e99c005aa1abebfa3173fd56014fd74955cd",
+      "export_sha256": "1255aedb630a65a4ae91ab55cb99e99c005aa1abebfa3173fd56014fd74955cd",
+      "modified_for_release": false
+    },
+    {
+      "source": "appa/data/__init__.py",
+      "export": "appa/data/__init__.py",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "export_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "modified_for_release": false
+    },
+    {
+      "source": "appa/data/const.py",
+      "export": "appa/data/const.py",
+      "source_sha256": "61a426f22093ad91d683f04a2f6507aa5c192fc28a76c8b6417181f01a6b526a",
+      "export_sha256": "61a426f22093ad91d683f04a2f6507aa5c192fc28a76c8b6417181f01a6b526a",
+      "modified_for_release": false
+    },
+    {
+      "source": "appa/data/dataloaders.py",
+      "export": "appa/data/dataloaders.py",
+      "source_sha256": "aa5f9825fb5979fdaaa657b95b53714c657534ad7adcc750b9cb36166d377954",
+      "export_sha256": "aa5f9825fb5979fdaaa657b95b53714c657534ad7adcc750b9cb36166d377954",
+      "modified_for_release": false
+    },
+    {
+      "source": "appa/data/datasets.py",
+      "export": "appa/data/datasets.py",
+      "source_sha256": "067722c24feb43ae02b51f1d8821d4f1d8f56aea17819304d4af8bf962ca997f",
+      "export_sha256": "c8f3fdf04822b38af752cecfc22b20771cd9b60c1bbe175dc2f6787d62db85be",
+      "modified_for_release": true
+    },
+    {
+      "source": "appa/data/mappings.py",
+      "export": "appa/data/mappings.py",
+      "source_sha256": "769fc89131531b151c7229a50a381c1013821cb628fbe0483f4b69da3c9d15f5",
+      "export_sha256": "769fc89131531b151c7229a50a381c1013821cb628fbe0483f4b69da3c9d15f5",
+      "modified_for_release": false
+    },
+    {
+      "source": "appa/data/transforms.py",
+      "export": "appa/data/transforms.py",
+      "source_sha256": "4b9ac7c26d0003c45a58c00970787682bd033b94b4f0181b31401c0fcea88296",
+      "export_sha256": "4b9ac7c26d0003c45a58c00970787682bd033b94b4f0181b31401c0fcea88296",
+      "modified_for_release": false
+    },
+    {
+      "source": "appa/date.py",
+      "export": "appa/date.py",
+      "source_sha256": "717a037e3493d5413efd57bc8cf9efe8b42f806fe50b250c627431555d1944ad",
+      "export_sha256": "717a037e3493d5413efd57bc8cf9efe8b42f806fe50b250c627431555d1944ad",
+      "modified_for_release": false
+    },
+    {
+      "source": "appa/diagnostics/__init__.py",
+      "export": "appa/diagnostics/__init__.py",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "export_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "modified_for_release": false
+    },
+    {
+      "source": "appa/diagnostics/const.py",
+      "export": "appa/diagnostics/const.py",
+      "source_sha256": "7064f22fe096f7798a781908331bbb90d48556468b911458fbe79ca38910bc52",
+      "export_sha256": "7064f22fe096f7798a781908331bbb90d48556468b911458fbe79ca38910bc52",
+      "modified_for_release": false
+    },
+    {
+      "source": "appa/diagnostics/plots.py",
+      "export": "appa/diagnostics/plots.py",
+      "source_sha256": "8a9863411b36d6661e55e2b8682fa3407a245b3ad08d036a3e32c90f36da606a",
+      "export_sha256": "8a9863411b36d6661e55e2b8682fa3407a245b3ad08d036a3e32c90f36da606a",
+      "modified_for_release": false
+    },
+    {
+      "source": "appa/diagnostics/reconstruction.py",
+      "export": "appa/diagnostics/reconstruction.py",
+      "source_sha256": "36bbbaa63e3a2be360baa3e84948510cd1ce1f9c4d1927351332615f224c3430",
+      "export_sha256": "36bbbaa63e3a2be360baa3e84948510cd1ce1f9c4d1927351332615f224c3430",
+      "modified_for_release": false
+    },
+    {
+      "source": "appa/diagnostics/spectral.py",
+      "export": "appa/diagnostics/spectral.py",
+      "source_sha256": "28c856f83589ae9a965be853fc242f176143b04de26cd73c2817b78491baa630",
+      "export_sha256": "28c856f83589ae9a965be853fc242f176143b04de26cd73c2817b78491baa630",
+      "modified_for_release": false
+    },
+    {
+      "source": "appa/diffusion.py",
+      "export": "appa/diffusion.py",
+      "source_sha256": "d5552a35e7096f2cded548b24fbe59b532c0ad7a144aedbea57a48dc8be5858d",
+      "export_sha256": "d5552a35e7096f2cded548b24fbe59b532c0ad7a144aedbea57a48dc8be5858d",
+      "modified_for_release": false
+    },
+    {
+      "source": "appa/grid.py",
+      "export": "appa/grid.py",
+      "source_sha256": "6f850a69fdb6797c7e4e30890b58d4204a5708ffb88c5309edb31f2b5fd89330",
+      "export_sha256": "6f850a69fdb6797c7e4e30890b58d4204a5708ffb88c5309edb31f2b5fd89330",
+      "modified_for_release": false
+    },
+    {
+      "source": "appa/losses.py",
+      "export": "appa/losses.py",
+      "source_sha256": "69919a73b85b9ec5531acfd1d0f475c71ff52f5a41bf7a37760501bbd2773c4a",
+      "export_sha256": "69919a73b85b9ec5531acfd1d0f475c71ff52f5a41bf7a37760501bbd2773c4a",
+      "modified_for_release": false
+    },
+    {
+      "source": "appa/math.py",
+      "export": "appa/math.py",
+      "source_sha256": "fed1d32832f06d0873bd1b80b8fd32a8972923589ee2211daaad1b02c94c6089",
+      "export_sha256": "fed1d32832f06d0873bd1b80b8fd32a8972923589ee2211daaad1b02c94c6089",
+      "modified_for_release": false
+    },
+    {
+      "source": "appa/nn/__init__.py",
+      "export": "appa/nn/__init__.py",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "export_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "modified_for_release": false
+    },
+    {
+      "source": "appa/nn/attention.py",
+      "export": "appa/nn/attention.py",
+      "source_sha256": "05055565cf9f285908d3717bf81d745950d157a4db40f39a57db063e9266b9fa",
+      "export_sha256": "05055565cf9f285908d3717bf81d745950d157a4db40f39a57db063e9266b9fa",
+      "modified_for_release": false
+    },
+    {
+      "source": "appa/nn/cae.py",
+      "export": "appa/nn/cae.py",
+      "source_sha256": "a5e2088ba9e617ad3a31d6f9ec76ae039ac59d3a3d04d65ebf18a536b537b455",
+      "export_sha256": "a5e2088ba9e617ad3a31d6f9ec76ae039ac59d3a3d04d65ebf18a536b537b455",
+      "modified_for_release": false
+    },
+    {
+      "source": "appa/nn/era_to_sate.py",
+      "export": "appa/nn/era_to_sate.py",
+      "source_sha256": "fe7be1fd827890962eff2f126b52a059e17f0b565375d114a664d42b5db261fd",
+      "export_sha256": "fe7be1fd827890962eff2f126b52a059e17f0b565375d114a664d42b5db261fd",
+      "modified_for_release": false
+    },
+    {
+      "source": "appa/nn/gae.py",
+      "export": "appa/nn/gae.py",
+      "source_sha256": "1d28c6edeb75a66bafbedec0cdc5b3eb25fef6b60528a6f5778a39d358d502e8",
+      "export_sha256": "1d28c6edeb75a66bafbedec0cdc5b3eb25fef6b60528a6f5778a39d358d502e8",
+      "modified_for_release": false
+    },
+    {
+      "source": "appa/nn/graph.py",
+      "export": "appa/nn/graph.py",
+      "source_sha256": "5fd24a1e277096797c8f39d029ead5d60346dc3c0e49d1cdf7bd35db01dda0ac",
+      "export_sha256": "5fd24a1e277096797c8f39d029ead5d60346dc3c0e49d1cdf7bd35db01dda0ac",
+      "modified_for_release": false
+    },
+    {
+      "source": "appa/nn/layers.py",
+      "export": "appa/nn/layers.py",
+      "source_sha256": "5a67b0547b3bcb8a8a335e49ee48b974c418e6119c7c2cb5be18966c4282a24e",
+      "export_sha256": "5a67b0547b3bcb8a8a335e49ee48b974c418e6119c7c2cb5be18966c4282a24e",
+      "modified_for_release": false
+    },
+    {
+      "source": "appa/nn/obs_operator.py",
+      "export": "appa/nn/obs_operator.py",
+      "source_sha256": "959a1fc02b773671eae6b1fe048a82002c2c422335d052fa5d02401671e9daa6",
+      "export_sha256": "959a1fc02b773671eae6b1fe048a82002c2c422335d052fa5d02401671e9daa6",
+      "modified_for_release": false
+    },
+    {
+      "source": "appa/nn/sptgraph.py",
+      "export": "appa/nn/sptgraph.py",
+      "source_sha256": "bb68502bd1e34145cdddb436016e133e3f2d0e7bed5c17068f6de70f52c6bd13",
+      "export_sha256": "bb68502bd1e34145cdddb436016e133e3f2d0e7bed5c17068f6de70f52c6bd13",
+      "modified_for_release": false
+    },
+    {
+      "source": "appa/nn/swin.py",
+      "export": "appa/nn/swin.py",
+      "source_sha256": "95a72e3f8989b5e28ea55b7ee816d5f1575d5ee3c3842cc07038928150f8b860",
+      "export_sha256": "1dae76a7731f901a94d4419db7a5e04025689ea55ee8d4a1089585eb1ac1a5dc",
+      "modified_for_release": true
+    },
+    {
+      "source": "appa/nn/triggers.py",
+      "export": "appa/nn/triggers.py",
+      "source_sha256": "0659f196f13320296316c8f9a6257fd6edb98fbaf9c354d5c1235e95d53a1ca1",
+      "export_sha256": "0659f196f13320296316c8f9a6257fd6edb98fbaf9c354d5c1235e95d53a1ca1",
+      "modified_for_release": false
+    },
+    {
+      "source": "appa/nn/vit.py",
+      "export": "appa/nn/vit.py",
+      "source_sha256": "4fc4902213f0da5f5b8a2abbb2a4c1a3f39dda81d3b1da1babafddccff621de3",
+      "export_sha256": "4fc4902213f0da5f5b8a2abbb2a4c1a3f39dda81d3b1da1babafddccff621de3",
+      "modified_for_release": false
+    },
+    {
+      "source": "appa/observations_random.py",
+      "export": "appa/observations_random.py",
+      "source_sha256": "24e0e611ccb73b50641b1a0ac601f946ec3a449f74b5695be994c2961f77bd64",
+      "export_sha256": "24e0e611ccb73b50641b1a0ac601f946ec3a449f74b5695be994c2961f77bd64",
+      "modified_for_release": false
+    },
+    {
+      "source": "appa/optim.py",
+      "export": "appa/optim.py",
+      "source_sha256": "af9a540cf2347b73ec99b9199e71f895828bc478b725959f1867430d42bef0c4",
+      "export_sha256": "af9a540cf2347b73ec99b9199e71f895828bc478b725959f1867430d42bef0c4",
+      "modified_for_release": false
+    },
+    {
+      "source": "appa/sampling.py",
+      "export": "appa/sampling.py",
+      "source_sha256": "90aa4253a181921483e594444880254d8d1b4d8c03eb5ead1cf08e836450c059",
+      "export_sha256": "90aa4253a181921483e594444880254d8d1b4d8c03eb5ead1cf08e836450c059",
+      "modified_for_release": false
+    },
+    {
+      "source": "appa/save.py",
+      "export": "appa/save.py",
+      "source_sha256": "c021ddd034072c1feb92e268ec9107eb24e1f26319f66bec440ad47cf00ae78f",
+      "export_sha256": "c021ddd034072c1feb92e268ec9107eb24e1f26319f66bec440ad47cf00ae78f",
+      "modified_for_release": false
+    },
+    {
+      "source": "appa/soap.py",
+      "export": "appa/soap.py",
+      "source_sha256": "8c436cba62162452e76b7a9a565ca701087645dc53fe20db106fd48ac4ffbf51",
+      "export_sha256": "8c436cba62162452e76b7a9a565ca701087645dc53fe20db106fd48ac4ffbf51",
+      "modified_for_release": false
+    },
+    {
+      "export": "configs/assimilation.yaml",
+      "origin": "release_interface",
+      "export_sha256": "288e78c62abfe44d25dc3ddc9aaa1fb1ca03753b0086927318de5363e5661f03",
+      "modified_for_release": true
+    },
+    {
+      "export": "configs/calibration.yaml",
+      "origin": "release_interface",
+      "export_sha256": "dff85bc8a4b5ab317fdb992500e6c068c7afdd3500916a4f03faa82a2405f1fe",
+      "modified_for_release": true
+    },
+    {
+      "export": "configs/paths.env.example",
+      "origin": "release_interface",
+      "export_sha256": "b4e35c736962538782910324e35c949d41461291a36502607eb0a54e5e7f9ca8",
+      "modified_for_release": true
+    },
+    {
+      "export": "configs/timeline.yaml",
+      "origin": "release_interface",
+      "export_sha256": "9bf6aeeff05780ae711a14e749e8131b2c3d4ff2d0aa89ed4f41f3284bf12768",
+      "modified_for_release": true
+    },
+    {
+      "export": "docs/data.md",
+      "origin": "release_interface",
+      "export_sha256": "6aa4ad6537b7914255432c3f9742a60209a79364e1d8bfbb60259abb63eadbf4",
+      "modified_for_release": true
+    },
+    {
+      "export": "docs/pipeline.md",
+      "origin": "release_interface",
+      "export_sha256": "48116bb192d55b030915ff4be615facf86fd95f110707fd7813bcba20a42f941",
+      "modified_for_release": true
+    },
+    {
+      "export": "docs/protocols.md",
+      "origin": "release_interface",
+      "export_sha256": "dbb6806fc70ea392a7ad87bd77815f28d9264b09eb2860101b9b2be7d4bd34f1",
+      "modified_for_release": true
+    },
+    {
+      "export": "docs/release-notes.md",
+      "origin": "release_interface",
+      "export_sha256": "fae3edf1a0a09473ea037ebe5046605a92b8fa780d3f49dd48c904301170338a",
+      "modified_for_release": true
+    },
+    {
+      "export": "docs/training.md",
+      "origin": "release_interface",
+      "export_sha256": "5460a33ba6422d8d78b41a88ea09812d52c6f5158049b642a558829ee838e3f1",
+      "modified_for_release": true
+    },
+    {
+      "export": "docs/validation.md",
+      "origin": "release_interface",
+      "export_sha256": "787e88994bbd887d27b6cc68dedf73dc88b6233f536be54e9d30f6a181574d92",
+      "modified_for_release": true
+    },
+    {
+      "export": "experiments/__init__.py",
+      "origin": "release_interface",
+      "export_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "modified_for_release": true
+    },
+    {
+      "export": "experiments/autoencoder/__init__.py",
+      "origin": "release_interface",
+      "export_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "modified_for_release": true
+    },
+    {
+      "source": "experiments/autoencoder/configs/ae/cae_f32_c128.yaml",
+      "export": "experiments/autoencoder/configs/ae/cae_f32_c128.yaml",
+      "source_sha256": "45c9a12325c4702f05433a151c6efea8f4e72596eb980b8ec6e09d707a92aa36",
+      "export_sha256": "5b3849ba7653c7482bc728e91d8d2ed7f4b1f6b7b84c396b878341b048aef0d8",
+      "modified_for_release": true
+    },
+    {
+      "source": "experiments/autoencoder/configs/dump_1h.yaml",
+      "export": "experiments/autoencoder/configs/dump_1h.yaml",
+      "source_sha256": "f904bbf2aeaea57fb76dad1f5c50df29f1fd48cc8d28e6398024a7ba0bb02c9a",
+      "export_sha256": "5820fa3a77bcf966b131c9564398cf66bfb89cfe461f2a42a414d84c2e3a6215",
+      "modified_for_release": true
+    },
+    {
+      "source": "experiments/autoencoder/configs/optim/adamw.yaml",
+      "export": "experiments/autoencoder/configs/optim/adamw.yaml",
+      "source_sha256": "81af038d9cef806b3feda6cdbec58e22704c5f99d31cc62bbeb2985afabaf1cc",
+      "export_sha256": "81af038d9cef806b3feda6cdbec58e22704c5f99d31cc62bbeb2985afabaf1cc",
+      "modified_for_release": false
+    },
+    {
+      "source": "experiments/autoencoder/configs/optim/psgd.yaml",
+      "export": "experiments/autoencoder/configs/optim/psgd.yaml",
+      "source_sha256": "c7c501ba4a238af0dfc57345529b39410b3c0209ca8357bd36c2fd4abfc7838f",
+      "export_sha256": "c7c501ba4a238af0dfc57345529b39410b3c0209ca8357bd36c2fd4abfc7838f",
+      "modified_for_release": false
+    },
+    {
+      "source": "experiments/autoencoder/configs/optim/soap.yaml",
+      "export": "experiments/autoencoder/configs/optim/soap.yaml",
+      "source_sha256": "ce3059d4acadfd1f79820f2b364186aff1d4c4071d51732deb11000b52b8f34d",
+      "export_sha256": "ce3059d4acadfd1f79820f2b364186aff1d4c4071d51732deb11000b52b8f34d",
+      "modified_for_release": false
+    },
+    {
+      "source": "experiments/autoencoder/configs/train_1h.yaml",
+      "export": "experiments/autoencoder/configs/train_1h.yaml",
+      "source_sha256": "7df2105d0f8e5f985bf7833755312b2550d320d8b30079e973829b2e84933956",
+      "export_sha256": "cd62f843138a701c86e0a7497306e7ad42c187ba9c8d60dda15dfb652b364b87",
+      "modified_for_release": true
+    },
+    {
+      "source": "experiments/autoencoder/dump_1h.py",
+      "export": "experiments/autoencoder/dump_1h.py",
+      "source_sha256": "7827e6df1700d47344a25930b65f700d432ece0c49184d95e50499c3813e6f95",
+      "export_sha256": "7827e6df1700d47344a25930b65f700d432ece0c49184d95e50499c3813e6f95",
+      "modified_for_release": false
+    },
+    {
+      "source": "experiments/autoencoder/train_1h.py",
+      "export": "experiments/autoencoder/train_1h.py",
+      "source_sha256": "c32131ea7e32f891052a1797a46a543d6595eea98ddb487931a96e886a0c98f3",
+      "export_sha256": "7a0399492e61fc737c46b990106beeeb8ba2de16be154c1cd1ca3a00ada8ef76",
+      "modified_for_release": true
+    },
+    {
+      "export": "experiments/diffusion/__init__.py",
+      "origin": "release_interface",
+      "export_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "modified_for_release": true
+    },
+    {
+      "source": "experiments/diffusion/configs/backbone/vit_large.yaml",
+      "export": "experiments/diffusion/configs/backbone/vit_large.yaml",
+      "source_sha256": "a8b5c33591394db6c104b8eeb5619f1055cb739485b17732e418e6161e425210",
+      "export_sha256": "a8b5c33591394db6c104b8eeb5619f1055cb739485b17732e418e6161e425210",
+      "modified_for_release": false
+    },
+    {
+      "source": "experiments/diffusion/configs/optim/adamw.yaml",
+      "export": "experiments/diffusion/configs/optim/adamw.yaml",
+      "source_sha256": "3d2638f8fe095526b6c525afb467ecc22107821b50faeba5f8029eb39a2fdce4",
+      "export_sha256": "3d2638f8fe095526b6c525afb467ecc22107821b50faeba5f8029eb39a2fdce4",
+      "modified_for_release": false
+    },
+    {
+      "source": "experiments/diffusion/configs/train_diff_1h.yaml",
+      "export": "experiments/diffusion/configs/train_diff_1h.yaml",
+      "source_sha256": "8d45cea6bd3670e2d3dfef1cfb8f3a29cec08afb8a5546f1f9ebc25ed5c14405",
+      "export_sha256": "35812391723beda7b88657ade1e7f78f5538c65063b6d430465e4aea12e432fa",
+      "modified_for_release": true
+    },
+    {
+      "source": "experiments/diffusion/train_diff_1h.py",
+      "export": "experiments/diffusion/train_diff_1h.py",
+      "source_sha256": "5c4d8f00a29588ed23a3b6866f8852d64d6a22fa49972b40888ec883fd18db66",
+      "export_sha256": "7039d82f68fa2e60768ede5803701b237568fdccbde97d96d93ec8c3b251712c",
+      "modified_for_release": true
+    },
+    {
+      "export": "experiments/observations/__init__.py",
+      "origin": "release_interface",
+      "export_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "modified_for_release": true
+    },
+    {
+      "source": "experiments/observations/build_q1_spatial_ppgf_mse_ordering_cache.py",
+      "export": "experiments/observations/build_mse_ordering_cache.py",
+      "source_sha256": "314dde26b703fe5a20b44228e5ff2768bf335ac81b228a6b928ec209ae6e5875",
+      "export_sha256": "132f337fee3622ee30b41e9c016aa52727a410b7d7dd80ae2ad3610707499bf1",
+      "modified_for_release": true
+    },
+    {
+      "source": "experiments/observations/build_random_spatial_ppgf_ordering_cache.py",
+      "export": "experiments/observations/build_random_spatial_ppgf_ordering_cache.py",
+      "source_sha256": "e7d2f2ff02644116ee9745cc61136c7c2ae97c196f4304a0674945ac386416e5",
+      "export_sha256": "037678626c3d9079c725983a84bfe5532447c02ea10b15c0e724b8a00d7af690",
+      "modified_for_release": true
+    },
+    {
+      "source": "experiments/observations/build_q1_spatial_ppgf_ordering_cache.py",
+      "export": "experiments/observations/build_spatial_ordering_cache.py",
+      "source_sha256": "8679f3dbb3d145e7a89856bc0d7b3b2218a76f66d4dd6244e046528b0ea9f973",
+      "export_sha256": "8f86246c2c2ff46efcb0c7b56b2e679da0a372f844714fb435f8cf26ee27e0f1",
+      "modified_for_release": true
+    },
+    {
+      "source": "experiments/observations/calibrate_q1_2025_var_y.py",
+      "export": "experiments/observations/calibration_residuals.py",
+      "source_sha256": "2ebc1a8c781b526c55f024caae01a52e7e5257947ee73ca64d1723e3338d9e32",
+      "export_sha256": "d15d828b614c9ce0f74482fd313552d051294713a4ee3bf8071d9f10629a4443",
+      "modified_for_release": true
+    },
+    {
+      "source": "experiments/observations/calibrate_q1_hourly_mask_frac_spatial_uncertainty.py",
+      "export": "experiments/observations/calibration_spatial.py",
+      "source_sha256": "a84dfd2fb2de67e6c706e03ffd2221f44afd520e298034d62d5de56aab5eebd8",
+      "export_sha256": "43ba3f59bb0f7fba9694011783e9dae8d12bdeb603da857c173c3c686abf686b",
+      "modified_for_release": true
+    },
+    {
+      "source": "experiments/observations/configs/optim/adamw.yaml",
+      "export": "experiments/observations/configs/optim/adamw.yaml",
+      "source_sha256": "81af038d9cef806b3feda6cdbec58e22704c5f99d31cc62bbeb2985afabaf1cc",
+      "export_sha256": "81af038d9cef806b3feda6cdbec58e22704c5f99d31cc62bbeb2985afabaf1cc",
+      "modified_for_release": false
+    },
+    {
+      "source": "experiments/observations/configs/train_convi_cressman_obs2era.yaml",
+      "export": "experiments/observations/configs/train_convi_cressman_obs2era.yaml",
+      "source_sha256": "e2d15a60999e59f5bd46b3b4671acf644b8fcb486897ea4d83873060ea15d3fa",
+      "export_sha256": "69acdfff08351f06bee365597bdc16c2fdd4d9c03dcba643981fb1b0dbc00376",
+      "modified_for_release": true
+    },
+    {
+      "source": "experiments/observations/configs/train_era5_latent_to_tb.yaml",
+      "export": "experiments/observations/configs/train_era5_latent_to_tb.yaml",
+      "source_sha256": "2a05bdf10effec74487a148c300b9dabe51970f8759736c6984bebf9c19e2eae",
+      "export_sha256": "be2f526e620476ae30a60e5dc288142dceab3779d2013d60fe27a60ccb96f6e6",
+      "modified_for_release": true
+    },
+    {
+      "source": "experiments/observations/configs/train_obs2era.yaml",
+      "export": "experiments/observations/configs/train_obs2era.yaml",
+      "source_sha256": "409f10458b478a4b9a2a1ef9746884a8130f345925cd7337a038038819b2b4cb",
+      "export_sha256": "eddd3c88d690c43ea1f582bfbddee26a2eb720de07ec96f63a20bc0cd3897501",
+      "modified_for_release": true
+    },
+    {
+      "source": "experiments/observations/convi_obs2era_data.py",
+      "export": "experiments/observations/convi_obs2era_data.py",
+      "source_sha256": "668ed10266dc34ab7846f3d0fc168d2201fb21d3e4a5c3708791f01845de82a6",
+      "export_sha256": "7b69ee2d5d33979c6556f6aac9911ce51058dec2d35ed53c58b441e1f4407964",
+      "modified_for_release": true
+    },
+    {
+      "source": "experiments/observations/convi_obs_encoder.py",
+      "export": "experiments/observations/convi_obs_encoder.py",
+      "source_sha256": "83c67c791e4fe87ad7761ba00a4ce80a02cb5fddbe3a334e3601a8427b340ad0",
+      "export_sha256": "3ac6152340f3e5747bc9965f2803726b9d32b7e0e8e2f541ae7ad876f1ba3c0b",
+      "modified_for_release": true
+    },
+    {
+      "source": "experiments/observations/convi_physical.py",
+      "export": "experiments/observations/convi_physical.py",
+      "source_sha256": "37ec028742a0a50f169ff5a96961538c20da4831153d8a175eb92f1bb2f89cbd",
+      "export_sha256": "37ec028742a0a50f169ff5a96961538c20da4831153d8a175eb92f1bb2f89cbd",
+      "modified_for_release": false
+    },
+    {
+      "source": "experiments/observations/dense_era_surface_latent_block_obs2era_data.py",
+      "export": "experiments/observations/dense_era_surface_latent_block_obs2era_data.py",
+      "source_sha256": "c5f36bf42bb0fcad373ff911f60d3b943fa98a6c69398e50ac1ee60daf66d287",
+      "export_sha256": "58254dda1af51b1d3d8ea7fe1b28f61bbb3b3a7c4e72689b3d36eb72ad98fa18",
+      "modified_for_release": true
+    },
+    {
+      "source": "experiments/observations/dense_era_surface_obs2era_data.py",
+      "export": "experiments/observations/dense_era_surface_obs2era_data.py",
+      "source_sha256": "3f2e9304917fc5ab69b981b84cac16637c156b4abd9ec78e65ee0c5bf9a0e504",
+      "export_sha256": "3f2e9304917fc5ab69b981b84cac16637c156b4abd9ec78e65ee0c5bf9a0e504",
+      "modified_for_release": false
+    },
+    {
+      "source": "experiments/observations/direct_e2o_assimilation.py",
+      "export": "experiments/observations/direct_e2o_assimilation.py",
+      "source_sha256": "2a7bed71087be45b3e2fbefe450c8051c468ad76e6c47f7c9718dfb55f461ce5",
+      "export_sha256": "8d45ab886ed82a9d0ac90352a584846bfbac116163e6b8cb16fe6713cf67d4e9",
+      "modified_for_release": true
+    },
+    {
+      "source": "experiments/observations/direct_e2o_data.py",
+      "export": "experiments/observations/direct_e2o_data.py",
+      "source_sha256": "cde24be51c8cbe0b1392737c86c8ede04e1fd94675aa98615f097969b4b43c57",
+      "export_sha256": "cde24be51c8cbe0b1392737c86c8ede04e1fd94675aa98615f097969b4b43c57",
+      "modified_for_release": false
+    },
+    {
+      "source": "experiments/observations/evaluate_guided_six_frame.py",
+      "export": "experiments/observations/evaluate_guided_six_frame.py",
+      "source_sha256": "67aeff6a33c5c849070dc8602620acd3e554f5db370646b50db958c2e63c1455",
+      "export_sha256": "29af33ae1b394e90c9b6c66c313eb62d72246d95839bdb8d1ac4e0a51f76cba2",
+      "modified_for_release": true
+    },
+    {
+      "source": "experiments/observations/evaluate_guided_six_frame_metrics.py",
+      "export": "experiments/observations/evaluate_guided_six_frame_metrics.py",
+      "source_sha256": "1ad01a9ba508a8778258d48b7b668138522273553f66dddb5dc7a7cc9c6c5e67",
+      "export_sha256": "cc572c7499997778aa15dff8a495d59de1472aeb85bd4e91800cc5d0f3f5297e",
+      "modified_for_release": true
+    },
+    {
+      "source": "experiments/observations/reanalysis_obs2era_dual.py",
+      "export": "experiments/observations/reanalysis_obs2era_dual.py",
+      "source_sha256": "a3b04a23bc085d5afaec2fae74f6ad7dfd23c32f3ed2271dbd0a7deb8ec33cc6",
+      "export_sha256": "8e46dfe6e77ed372530f7cbdc6ecd02a30d8cb2156f23831ed005edb585db03d",
+      "modified_for_release": true
+    },
+    {
+      "source": "experiments/observations/compare_residual_var_y.py",
+      "export": "experiments/observations/residual_moments.py",
+      "source_sha256": "aeff2654ce20473347b273543846f52a7b4a628df674635bab2164def2d629c3",
+      "export_sha256": "f919a8eee0d4d3bbebc371f9fa128cf48b82bee4a3fa4728a7488e4ae7811f38",
+      "modified_for_release": true
+    },
+    {
+      "source": "experiments/observations/train_convi_cressman_obs2era.py",
+      "export": "experiments/observations/train_convi_cressman_obs2era.py",
+      "source_sha256": "8659a14a1272ab86cdb8512d4e31347b534bc92b898b737df92379df2383a0c0",
+      "export_sha256": "8659a14a1272ab86cdb8512d4e31347b534bc92b898b737df92379df2383a0c0",
+      "modified_for_release": false
+    },
+    {
+      "source": "experiments/observations/train_era5_latent_to_tb.py",
+      "export": "experiments/observations/train_era5_latent_to_tb.py",
+      "source_sha256": "0f719d3ba3f357b9869c13a8f40451cec8e6878299e60b6c03f2b7e4da22358c",
+      "export_sha256": "06eaab2291f5831b188276e5847f55adf999d00313d88a06d21dbd1a58cd3157",
+      "modified_for_release": true
+    },
+    {
+      "source": "experiments/observations/train_obs2era.py",
+      "export": "experiments/observations/train_obs2era.py",
+      "source_sha256": "58b629b151a4f43b3b99bf7c3e5197cf9c9723c5f5ff240e65051d6cddcbed0a",
+      "export_sha256": "d10807e1934f415f807190f1ef6569c653aa6ac79b38be824138bed37560afac",
+      "modified_for_release": true
+    },
+    {
+      "export": "pyproject.toml",
+      "origin": "release_interface",
+      "export_sha256": "4700d271792d397b0e9611be269011693c9db198649781e29272959188f298b0",
+      "modified_for_release": true
+    },
+    {
+      "export": "risda/__init__.py",
+      "origin": "release_interface",
+      "export_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "modified_for_release": true
+    },
+    {
+      "export": "risda/__main__.py",
+      "origin": "release_interface",
+      "export_sha256": "2059e557060c9b1484cf3a6d0ecafdc58e6f68f8ba01196c4a57fa4b06cc0711",
+      "modified_for_release": true
+    },
+    {
+      "source": "output_paper_rebuttal/scripts/calibrate.py",
+      "export": "risda/calibrate.py",
+      "source_sha256": "c281b43a1f2bb1e8c9ac33a965ea6c51751851bb73044b6bee5da1aefed76009",
+      "export_sha256": "ccbc2311a6e0942be2f4d7e8595f021ce73456993ce25b91711766802163127e",
+      "modified_for_release": true
+    },
+    {
+      "source": "output_paper_rebuttal/scripts/calibrate_decoder.py",
+      "export": "risda/calibrate_decoder.py",
+      "source_sha256": "071f97c28b0b76ce854b70ebf55de35b771bf99bcb2d3da121e4a9a86a0afbd3",
+      "export_sha256": "84683027694ab95b488a2bcc4688979ae193bcb876b0ff1ebd24def123299a09",
+      "modified_for_release": true
+    },
+    {
+      "export": "risda/calibration_config.py",
+      "origin": "release_interface",
+      "export_sha256": "3445eefdd2e616a86f45f4cac4f36a1dcdd6727d398b2cce9b295c9ea5bb3f56",
+      "modified_for_release": true
+    },
+    {
+      "export": "risda/check.py",
+      "origin": "release_interface",
+      "export_sha256": "86ee3d43e988c7cf09f76f4ef8be9dec42715eeabfcc22b0e01dba5750c3b478",
+      "modified_for_release": true
+    },
+    {
+      "export": "risda/environment.py",
+      "origin": "release_interface",
+      "export_sha256": "53887262a212db2e5c88eeab8718365f4cd82a7b2f95f4ea53b73077b1ab4d5f",
+      "modified_for_release": true
+    },
+    {
+      "export": "risda/models/__init__.py",
+      "source_sha256": "f5cc9d3eaf29d175a8b868ae590e2394b679c7b9b18c95e63e59918b3a49e319",
+      "export_sha256": "debb6318b5c6844a692fd877c318ab424605411ddbd62e974a026c4bbdb9d439",
+      "modified_for_release": true,
+      "origin": "research_snapshot",
+      "source_path_disclosed": false
+    },
+    {
+      "export": "risda/models/decoders.py",
+      "source_sha256": "ff0ef2054fe65a08d90375e9e0d08882a6344b19517c1010583d8da14bc9fa7e",
+      "export_sha256": "ff0ef2054fe65a08d90375e9e0d08882a6344b19517c1010583d8da14bc9fa7e",
+      "modified_for_release": false,
+      "origin": "research_snapshot",
+      "source_path_disclosed": false
+    },
+    {
+      "export": "risda/models/encoders.py",
+      "source_sha256": "5c318dc905870ef2b483482d92474a1adc952a68583707986864f07f71672fc2",
+      "export_sha256": "5c318dc905870ef2b483482d92474a1adc952a68583707986864f07f71672fc2",
+      "modified_for_release": false,
+      "origin": "research_snapshot",
+      "source_path_disclosed": false
+    },
+    {
+      "export": "risda/models/fusion.py",
+      "source_sha256": "f4e459d55e975d7b8f676d0b2cd5a5356b05fcedd27cf45c3b7443e19e5da74a",
+      "export_sha256": "f4e459d55e975d7b8f676d0b2cd5a5356b05fcedd27cf45c3b7443e19e5da74a",
+      "modified_for_release": false,
+      "origin": "research_snapshot",
+      "source_path_disclosed": false
+    },
+    {
+      "export": "risda/run.py",
+      "origin": "release_interface",
+      "export_sha256": "67d54ba310b1075cba25c92d7b974309193585ad41669f1f07ab9c7f49e4e5df",
+      "modified_for_release": true
+    },
+    {
+      "export": "risda/timeline.py",
+      "origin": "release_interface",
+      "export_sha256": "3228c2566ab1ad0cf73e71c977bd035b0268f992b8da8430eef29b2ddc244fd7",
+      "modified_for_release": true
+    },
+    {
+      "export": "risda/train_decoder.py",
+      "origin": "release_interface",
+      "export_sha256": "0ff114e81c28f9963597687df41838ca7bf8182d9f20a754a14536f2634f29f3",
+      "modified_for_release": true
+    },
+    {
+      "export": "run_single.sh",
+      "origin": "release_interface",
+      "export_sha256": "6785e69fab3d11bf1d8a2562088e94e531c0bb1c894c930d5f36ead090de95cd",
+      "modified_for_release": true
+    },
+    {
+      "source": "run_train_latent_channels.sh",
+      "export": "run_train_latent_channels.sh",
+      "source_sha256": "5384345ccd0124a82540d28343a4dbaeb50df6e09549d2d103e36d7ff3913769",
+      "export_sha256": "009cbbcdadf66e40c65baac5d11d8b6c300373996d60266fef6d038b3c61322c",
+      "modified_for_release": true
+    },
+    {
+      "export": "scripts/__init__.py",
+      "origin": "release_interface",
+      "export_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "modified_for_release": true
+    },
+    {
+      "export": "scripts/data/__init__.py",
+      "origin": "release_interface",
+      "export_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "modified_for_release": true
+    },
+    {
+      "source": "scripts/data/configs/latent_stats.yaml",
+      "export": "scripts/data/configs/latent_stats.yaml",
+      "source_sha256": "ad57923620df1ff8364b67bd2676773688c22183a947917165b0b7af245a7d72",
+      "export_sha256": "ad57923620df1ff8364b67bd2676773688c22183a947917165b0b7af245a7d72",
+      "modified_for_release": false
+    },
+    {
+      "source": "scripts/data/era5_1h_stats.py",
+      "export": "scripts/data/era5_1h_stats.py",
+      "source_sha256": "0133c35d135617b4efcb459e7f3def3b3f325249a09e36f0566718a51a7e8094",
+      "export_sha256": "36cf303f3da3dabb48ae5f2dacd9f3b13cb6c1cec310d70a32cedada3a6ce9c8",
+      "modified_for_release": true
+    },
+    {
+      "source": "scripts/data/latent_stats_v1.py",
+      "export": "scripts/data/latent_stats_v1.py",
+      "source_sha256": "145691142788fd0d78697556a056e3a17fe8b667d5eb917385d614b83129bf51",
+      "export_sha256": "145691142788fd0d78697556a056e3a17fe8b667d5eb917385d614b83129bf51",
+      "modified_for_release": false
+    },
+    {
+      "source": "tests/test_convi_aligned_training.py",
+      "export": "tests/test_convi_aligned_training.py",
+      "source_sha256": "b5f94ba5d9393dc785575030be60c1445d7041af1266fb9cf824239b96c068a2",
+      "export_sha256": "b5f94ba5d9393dc785575030be60c1445d7041af1266fb9cf824239b96c068a2",
+      "modified_for_release": false
+    },
+    {
+      "source": "tests/test_convi_physical_guidance.py",
+      "export": "tests/test_convi_physical_guidance.py",
+      "source_sha256": "7916af1ca64ad8c40d4591773fd6de92352320b93f6e8fb8598df822c5746cd7",
+      "export_sha256": "1dfed6686a90ebc97a0eecc3e86e0550024fa2993813a54a88b753ebd6d9394d",
+      "modified_for_release": true
+    },
+    {
+      "source": "tests/test_direct_e2o.py",
+      "export": "tests/test_direct_e2o.py",
+      "source_sha256": "44bbb2d5ce269fcb6b0add9980fea9be523540e346dbc7c4d7f3363d1684a258",
+      "export_sha256": "12b5e9e588dc11402f97a94770e382b760f9a487b1d8aeb1a3da5a6af21c28aa",
+      "modified_for_release": true
+    },
+    {
+      "source": "tests/test_guided_six_frame_evaluation.py",
+      "export": "tests/test_guided_six_frame_evaluation.py",
+      "source_sha256": "7640b39779a517f31ab8ef6df0cc2c4d9c8e2b97cb7786dcb6d4684bf0a693a7",
+      "export_sha256": "0f8d720e39cebc3b14ca299ed37e6219e0a7db38c536e74c34923d7fb1a0180d",
+      "modified_for_release": true
+    },
+    {
+      "source": "tests/test_guided_six_frame_metrics.py",
+      "export": "tests/test_guided_six_frame_metrics.py",
+      "source_sha256": "be88971a3e79c097c2faa4e1f9997d0870a3f728e6ca62ba46c8ee83032c1d1e",
+      "export_sha256": "82a9a31c7cb5c30f57d25c659e958d987a445a90711b77a2d824c0427604328b",
+      "modified_for_release": true
+    },
+    {
+      "source": "tests/test_hourly_normalization.py",
+      "export": "tests/test_hourly_normalization.py",
+      "source_sha256": "9895dbb70a8364fbab3d4c644d68e5d89c1b31b3e8e4446f9cb496ad9a194e52",
+      "export_sha256": "9895dbb70a8364fbab3d4c644d68e5d89c1b31b3e8e4446f9cb496ad9a194e52",
+      "modified_for_release": false
+    },
+    {
+      "source": "tests/test_obs2era_hourly_pairing.py",
+      "export": "tests/test_obs2era_hourly_pairing.py",
+      "source_sha256": "0de799dc6b5fbc5386d86f18e375d2f2121f5507e3a32ef82d2c8b5ee5f37f5c",
+      "export_sha256": "0de799dc6b5fbc5386d86f18e375d2f2121f5507e3a32ef82d2c8b5ee5f37f5c",
+      "modified_for_release": false
+    },
+    {
+      "source": "tests/test_pcgrad.py",
+      "export": "tests/test_pcgrad.py",
+      "source_sha256": "31e365122b593576c3f0419ac641604270cb3e8749d3a1215b8582712745f173",
+      "export_sha256": "31e365122b593576c3f0419ac641604270cb3e8749d3a1215b8582712745f173",
+      "modified_for_release": false
+    },
+    {
+      "export": "tests/test_release_timeline.py",
+      "origin": "release_interface",
+      "export_sha256": "a86f086bd018f1f2ccaf259df34cd3a9ef32b58b87472d3823d73173d50480c8",
+      "modified_for_release": true
+    },
+    {
+      "export": "tests/test_release_workflow.py",
+      "origin": "release_interface",
+      "export_sha256": "c61de7b9b5df0a7be7949c52e2c2a2408c6c44b35433a88d10fdc3aa9ce37cbe",
+      "modified_for_release": true
+    },
+    {
+      "source": "tests/test_residual_var_y.py",
+      "export": "tests/test_residual_var_y.py",
+      "source_sha256": "24399c8c2b8b3b4075498020c3450529a01497de000d48967a49f2b9e656680a",
+      "export_sha256": "aed5d1cfc8fb448acab24ade72eeb02140d4ff5fdf9bfced2517c1f898c8d85b",
+      "modified_for_release": true
+    },
+    {
+      "source": "tests/test_sampling.py",
+      "export": "tests/test_sampling.py",
+      "source_sha256": "8d6fe329464041faeab28536ec66f5c2244b7c5f40fbd8d6166a35583d25261e",
+      "export_sha256": "8d6fe329464041faeab28536ec66f5c2244b7c5f40fbd8d6166a35583d25261e",
+      "modified_for_release": false
+    },
+    {
+      "source": "tests/test_satellite_ae_time_window.py",
+      "export": "tests/test_satellite_ae_time_window.py",
+      "source_sha256": "da494d31c9fc48b17a17da772a5ee75b6248c270177ec99aca11fa8345f4578f",
+      "export_sha256": "da494d31c9fc48b17a17da772a5ee75b6248c270177ec99aca11fa8345f4578f",
+      "modified_for_release": false
+    },
+    {
+      "source": "tests/test_q1_spatial_ppgf_ordering_cache.py",
+      "export": "tests/test_spatial_ordering_cache.py",
+      "source_sha256": "c36631ea335d85a4d0fcd4850c738c5ece2fc16a896ac28b027b11f0ad330e34",
+      "export_sha256": "49c9c9d58c3087131c95be751c0fff6c6b876fde69d23432f5e26dabf21114e7",
+      "modified_for_release": true
+    }
+  ]
+}
