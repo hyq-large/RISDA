@@ -1,2 +1,0 @@
-# Dates, sources, model paths and output location come from this shared config.
-assimilation_config: assimilation.yaml

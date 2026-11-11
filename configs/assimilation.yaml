@@ -1,186 +1,35 @@
-# Shared configuration for the methods in the RISDA paper.
-defaults:
-- timeline
-- _self_
-model_path: ${oc.env:RISDA_DENOISER_DIR}
-model_target: best
-reference_root: ${oc.env:RISDA_OUTPUT_ROOT}
-output_root: ${oc.env:RISDA_OUTPUT_ROOT}/runs
-id: PPGF+VCLG
-split: evaluation
-# Used by AGF+VCLG; choose spatial for the additive fusion ablation reference.
-vclg_variance: channelwise
-route: encoder
-enabled_sources:
-- atms
-- amsua
-- mhs
-- mwts
-- mwhs
-- convi
-convi:
-  guidance_space: null
-  var_y_mode: null
-  var_y_constant: null
-  observation_variant: qc
-  surface_only: false
-  metrics_include_temp: true
-  guidance_value_source: observation
+prior:
+  model_dir: ${oc.env:RISDA_DENOISER_DIR}
+  latent_dir: ${oc.env:RISDA_LATENT_DIR}
+  checkpoint: best
+sources: [atms, amsua, mhs, mwts, mwhs, convi]
+encoders:
+  atms: {model_dir: "${oc.env:RISDA_MODEL_ROOT}/encoders/atms", checkpoint: best}
+  amsua: {model_dir: "${oc.env:RISDA_MODEL_ROOT}/encoders/amsua", checkpoint: best}
+  mhs: {model_dir: "${oc.env:RISDA_MODEL_ROOT}/encoders/mhs", checkpoint: best}
+  mwts: {model_dir: "${oc.env:RISDA_MODEL_ROOT}/encoders/mwts", checkpoint: best}
+  mwhs: {model_dir: "${oc.env:RISDA_MODEL_ROOT}/encoders/mwhs", checkpoint: best}
+  convi: {model_dir: "${oc.env:RISDA_MODEL_ROOT}/encoders/convi", checkpoint: best}
+data:
+  observations: ${oc.env:RISDA_OBS_ROOT}
+  normalization: ${oc.env:RISDA_MEAN_STD}
   surf_dir: ${oc.env:RISDA_OBS_ROOT}/convi/surf_qc
   icoa_dir: ${oc.env:RISDA_OBS_ROOT}/convi/icoads_qc
-  mean_std_dir: ${oc.env:RISDA_MEAN_STD}
-  temp_dir: ${oc.env:RISDA_OBS_ROOT}/convi/temp_time_qc
-  temp_bias_dir: ${oc.env:RISDA_OBS_ROOT}/other_info
-  include_temp: false
-  skip_humidity: false
-source_catalog:
-  atms:
-    encoder:
-      kind: satellite_encoder
-      model_dir: ${oc.env:RISDA_MODEL_ROOT}/encoders/atms
-      checkpoint: best
-      var_y_cache: ${calibration_root}/channelwise/atms_var_y.pth
-      reliability_cache: null
-      calibration_period: ${calibration_period}
-    decoder:
-      kind: direct_e2o
-      model_dir: ${oc.env:RISDA_MODEL_ROOT}/decoders/atms
-      checkpoint: best
-      var_y_cache: ${calibration_root}/decoder/channelwise/atms_var_y.pth
-      reliability_cache: null
-      calibration_period: ${calibration_period}
-  amsua:
-    encoder:
-      kind: satellite_encoder
-      model_dir: ${oc.env:RISDA_MODEL_ROOT}/encoders/amsua
-      checkpoint: best
-      var_y_cache: ${calibration_root}/channelwise/amsua_var_y.pth
-      reliability_cache: null
-      calibration_period: ${calibration_period}
-    decoder:
-      kind: direct_e2o
-      model_dir: ${oc.env:RISDA_MODEL_ROOT}/decoders/amsua
-      checkpoint: best
-      var_y_cache: ${calibration_root}/decoder/channelwise/amsua_var_y.pth
-      reliability_cache: null
-      calibration_period: ${calibration_period}
-  mhs:
-    encoder:
-      kind: satellite_encoder
-      model_dir: ${oc.env:RISDA_MODEL_ROOT}/encoders/mhs
-      checkpoint: best
-      var_y_cache: ${calibration_root}/channelwise/mhs_var_y.pth
-      reliability_cache: null
-      calibration_period: ${calibration_period}
-    decoder:
-      kind: direct_e2o
-      model_dir: ${oc.env:RISDA_MODEL_ROOT}/decoders/mhs
-      checkpoint: best
-      var_y_cache: ${calibration_root}/decoder/channelwise/mhs_var_y.pth
-      reliability_cache: null
-      calibration_period: ${calibration_period}
-  mwts:
-    encoder:
-      kind: satellite_encoder
-      model_dir: ${oc.env:RISDA_MODEL_ROOT}/encoders/mwts
-      checkpoint: best
-      var_y_cache: ${calibration_root}/channelwise/mwts_var_y.pth
-      reliability_cache: null
-      calibration_period: ${calibration_period}
-    decoder:
-      kind: direct_e2o
-      model_dir: ${oc.env:RISDA_MODEL_ROOT}/decoders/mwts
-      checkpoint: best
-      var_y_cache: ${calibration_root}/decoder/channelwise/mwts_var_y.pth
-      reliability_cache: null
-      calibration_period: ${calibration_period}
-  mwhs:
-    encoder:
-      kind: satellite_encoder
-      model_dir: ${oc.env:RISDA_MODEL_ROOT}/encoders/mwhs
-      checkpoint: best
-      var_y_cache: ${calibration_root}/channelwise/mwhs_var_y.pth
-      reliability_cache: null
-      calibration_period: ${calibration_period}
-    decoder:
-      kind: direct_e2o
-      model_dir: ${oc.env:RISDA_MODEL_ROOT}/decoders/mwhs
-      checkpoint: best
-      var_y_cache: ${calibration_root}/decoder/channelwise/mwhs_var_y.pth
-      reliability_cache: null
-      calibration_period: ${calibration_period}
-  convi:
-    encoder:
-      kind: convi_encoder
-      model_dir: ${oc.env:RISDA_MODEL_ROOT}/encoders/convi
-      checkpoint: best
-      var_y_cache: ${calibration_root}/channelwise/convi_var_y.pth
-      reliability_cache: null
-      calibration_period: ${calibration_period}
-    decoder:
-      kind: convi_physical
-      data_model_dir: ${source_catalog.convi.encoder.model_dir}
-      var_y_cache: ${calibration_root}/decoder/channelwise/convi_var_y.pth
-      reliability_cache: null
-      calibration_period: ${calibration_period}
-variance_floor: 1.0e-08
-var_y_mode: channelwise
-var_y_constant: null
-var_y_scale: 1.0
-spatial_var_y_cache: null
-convi_loss_top1_ordering_cache: null
-mask_frac: 0.0
-diffusion:
-  num_steps: 64
-  mmps_iters: 2
-  tweedie_covariance: true
-  sampler:
-    type: pc
-    config:
-      delta: 0.1
-      corrections: 2
-guidance_merge: sum
-convi_gradient_latent_mask: false
-pcgrad_overlap_only: true
-pcgrad_shuffle: true
-pcgrad_order_mode: uncertainty
-pcgrad_uncertainty_strength: 1.0
-pcgrad_ordering_cache: null
-ppgf_overlap_only: false
-ppgf_aligned_clip: 0.0
-ppgf_order_mode: fixed
-ppgf_ordering_source: var_y
-ppgf_ordering_cache: null
-ppgf_reliability_metric: native_rmse
-ppgf_uncertainty_strength: 1.0
-ppgf_uncertainty_strength_mode: constant
-ppgf_uncertainty_strength_start: 0.0
-ppgf_uncertainty_strength_end: 10.0
-ppgf_uncertainty_strength_ramp_steps: 16
-ppgf_convi_bypass_threshold: null
-ppgf_convi_bypass_merge_mode: retained_ppgf_plus_bypass
-ppgf_anneal_mode: none
-ppgf_anneal_sigma_high: 3.0
-ppgf_anneal_sigma_low: 1.0
-ppgf_anneal_full_steps: 16
-ppgf_anneal_blend_steps: 32
-ppgf_anneal_sum_steps: 16
-anchor_start_time: null
-anchor_end_time: null
-num_samples_per_anchor: 1
-save_source_latent_masks: false
+uncertainty:
+  variance: ${oc.env:RISDA_VARIANCE}
+  reliability: ${oc.env:RISDA_RELIABILITY}
+  var_y_scale: 1.0
+  variance_floor: 1.0e-8
+timeline:
+  start: "2025-04-01T00"
+  end: "2025-06-30T18"
+  step_hours: 6
+sampling:
+  steps: 64
+  solver_iterations: 2
+  corrections: 2
+  delta: 0.1
 seed: 0
 precision: float16
-deterministic: false
-log_every: 1
-cuda_cleanup_interval: 8
-coordination_timeout_seconds: 21600
-metrics:
-  enabled: false
-  data_path: null
-  precision: float16
-  log_every: 8
-  make_plot: true
-  target_names: all
-calibration_period: ${timeline.calibration.start}--${timeline.calibration.end}
-calibration_root: ${oc.env:RISDA_OUTPUT_ROOT}/calibration/${calibration_period}
+save_decoded: true
+output_root: ${oc.env:RISDA_OUTPUT_ROOT}/runs

@@ -1,6 +1,6 @@
-import torch
-
 from contextlib import contextmanager
+
+import torch
 
 ENABLE_CHECKPOINTING = True
 
@@ -9,7 +9,7 @@ ENABLE_CHECKPOINTING = True
 def disable_checkpointing():
     global ENABLE_CHECKPOINTING
     try:
-        old, ENABLE_CHECKPOINTING = ENABLE_CHECKPOINTING, False
+        (old, ENABLE_CHECKPOINTING) = (ENABLE_CHECKPOINTING, False)
         yield
     finally:
         ENABLE_CHECKPOINTING = old
@@ -22,20 +22,13 @@ ENABLE_XFA = True
 def disable_xfa():
     global ENABLE_XFA
     try:
-        old, ENABLE_XFA = ENABLE_XFA, False
+        (old, ENABLE_XFA) = (ENABLE_XFA, False)
         yield
     finally:
         ENABLE_XFA = old
 
 
 class skip_init(torch.overrides.TorchFunctionMode):
-    r"""Creates a context in which weight initialization is skipped.
-
-    Example:
-        >>> with skip_init():
-        ...    layer = nn.Linear(3, 5)
-    """
-
     def __torch_function__(self, func, types, args=(), kwargs=None):
         kwargs = kwargs or {}
         if getattr(func, "__module__", None) == "torch.nn.init":

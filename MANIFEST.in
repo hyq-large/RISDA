@@ -1,6 +1,3 @@
-include README.md NOTICE.md SOURCE_MANIFEST.json run_single.sh run_train_latent_channels.sh
+include README.md NOTICE.md run_single.sh
 recursive-include configs *.yaml *.example
-recursive-include docs *.md
 recursive-include tests *.py
-recursive-include experiments *.yaml
-recursive-include scripts *.yaml
