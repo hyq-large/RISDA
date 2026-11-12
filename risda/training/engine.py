@@ -12,7 +12,7 @@ from omegaconf import OmegaConf
 from torch.nn.parallel import DistributedDataParallel
 from torch.utils.data import BatchSampler, DataLoader, DistributedSampler, Subset
 
-from ..reproduction import json_write
+from ..config import json_write
 from .data import dataset_identity
 from .soap import SOAP
 

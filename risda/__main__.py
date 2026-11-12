@@ -1,4 +1,4 @@
-from .run import main
+from .inference import main
 
 if __name__ == "__main__":
     main()

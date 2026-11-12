@@ -8,8 +8,8 @@ import numpy as np
 import torch
 from torch.utils.data import Dataset
 
-from ..data import ConventionalObservations, SatelliteObservations
-from ..reproduction import EraFields, hourly_times
+from ..data import ConventionalObservations, SatelliteObservations, EraFields
+from ..config import hourly_times
 
 
 def interval_times(paths, interval):

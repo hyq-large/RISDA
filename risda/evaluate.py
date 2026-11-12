@@ -9,10 +9,9 @@ from omegaconf import OmegaConf
 
 from appa.save import safe_load
 
-from .config import anchor_times
+from .config import anchor_times, default_config, json_write, read_config, file_identity
 from .inference import timestamp
-from .reproduction import CHANNELS, EraFields, default_config, json_write, read_config
-from .run import file_identity
+from .data import CHANNELS, EraFields
 
 
 def squared_totals(prediction, target):

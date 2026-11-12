@@ -3,6 +3,9 @@ import contextlib
 import hashlib
 import json
 import os
+import shlex
+import subprocess
+import sys
 from datetime import timedelta
 from pathlib import Path
 
@@ -13,13 +16,11 @@ from omegaconf import OmegaConf
 
 from appa.save import safe_load
 
-from .config import anchor_times
+from .config import ROOT, anchor_times, file_identity, freeze, load_config, setup
 from .data import ConventionalObservations, SatelliteObservations, latent_mask, load_normalization
-from .encoders import load_obs2era_encoder, resolve_surface_preprocessing
-from .guidance import VCLG
-from .models import EraDecoder, load_prior
-from .sampling import sample
-from .uncertainty import Uncertainty
+from .guidance import Uncertainty, VCLG, sample
+from .models import EraDecoder, load_obs2era_encoder, load_prior, resolve_surface_preprocessing
+
 
 WINDOW_OFFSETS = (-3, -2, -1, 0, 1, 2)
 
@@ -254,7 +255,7 @@ def run(config, run_root, contract, device, rank=0, world_size=1):
         print(f"Completed {len(anchors)} anchors: {run_root}", flush=True)
 
 
-def main():
+def worker_main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--config", type=Path, required=True)
     args = parser.parse_args()
@@ -274,5 +275,111 @@ def main():
             dist.destroy_process_group()
 
 
+def inputs(config):
+    paths = [
+        Path(config.uncertainty.variance),
+        Path(config.uncertainty.reliability),
+        Path(config.prior.model_dir) / "config.yaml",
+        Path(config.prior.model_dir) / f"model_{config.prior.checkpoint}.pth",
+        Path(config.prior.latent_dir) / "stats.pth",
+        Path(config.prior.latent_dir) / "ae/config.yaml",
+    ]
+    if config.save_decoded:
+        paths.append(Path(config.prior.latent_dir) / "ae/model.pth")
+    names = set(config.sources) - {"convi"}
+    if "convi" in config.sources or config.save_decoded:
+        names.add("era5")
+    for name in names:
+        paths.extend(
+            Path(config.data.normalization) / f"{prefix}_{name}.npy" for prefix in ("mean", "std")
+        )
+    for name in config.sources:
+        spec = config.encoders[name]
+        paths.extend(
+            (
+                Path(spec.model_dir) / "config.yaml",
+                Path(spec.model_dir) / f"model_{spec.checkpoint}.pth",
+            )
+        )
+    record = {
+        "config": OmegaConf.to_container(config, resolve=True),
+        "files": [file_identity(path) for path in sorted(set(paths))],
+        "code": {
+            str(path.relative_to(ROOT)): file_identity(path)["sha256"]
+            for package in ("risda", "appa")
+            for path in sorted((ROOT / package).rglob("*.py"))
+        },
+    }
+    contract = hashlib.sha256(json.dumps(record, sort_keys=True).encode()).hexdigest()
+    return {"contract": contract, **record}
+
+
+def logged(command, logfile):
+    logfile.parent.mkdir(parents=True, exist_ok=True)
+    with logfile.open("a") as handle:
+        handle.write("\n$ " + shlex.join(command) + "\n")
+        handle.flush()
+        process = subprocess.Popen(
+            command, cwd=ROOT, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True
+        )
+        try:
+            for line in process.stdout:
+                print(line, end="", flush=True)
+                handle.write(line)
+                handle.flush()
+            code = process.wait()
+        except BaseException:
+            process.terminate()
+            process.wait()
+            raise
+        if code:
+            raise subprocess.CalledProcessError(code, command)
+
+
+def main():
+    setup()
+    parser = argparse.ArgumentParser(description="RISDA inference with PPGF+VCLG")
+    parser.add_argument("--gpus", type=int, default=1)
+    parser.add_argument(
+        "--config",
+        type=Path,
+        default=(
+            ROOT / "configs/assimilation.yaml"
+            if (ROOT / "configs/assimilation.yaml").is_file()
+            else Path(sys.prefix) / "share/risda/assimilation.yaml"
+        ),
+    )
+    parser.add_argument("--dry-run", action="store_true")
+    args, overrides = parser.parse_known_args()
+    if args.gpus < 1:
+        parser.error("--gpus must be positive")
+    if any("=" not in item for item in overrides):
+        parser.error("Overrides must use key=value")
+    config = load_config(args.config, overrides)
+    run_root = Path(config.output_root).expanduser().resolve() / "PPGF+VCLG"
+    frozen = run_root / "launch/config.yaml"
+    command = [
+        sys.executable,
+        "-B",
+        "-m",
+        "torch.distributed.run",
+        "--standalone",
+        f"--nproc_per_node={args.gpus}",
+        "--module",
+        "risda.inference",
+        "--config",
+        str(frozen),
+    ]
+    print(OmegaConf.to_yaml(config, resolve=True))
+    print(f"Anchors: {len(anchor_times(config.timeline))}")
+    print(shlex.join(command))
+    if args.dry_run:
+        return
+    provenance = inputs(config)
+    freeze(frozen, OmegaConf.to_yaml(config, resolve=True))
+    freeze(run_root / "launch/inputs.json", json.dumps(provenance, indent=2, sort_keys=True) + "\n")
+    logged(command, run_root / "logs/inference.log")
+
+
 if __name__ == "__main__":
-    main()
+    worker_main()

@@ -5,8 +5,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-from .environment import setup
-from .reproduction import default_config, read_config
+from .config import setup, default_config, read_config
 
 CONFIGS = {
     "ae": "era5_ae.yaml", "prior": "latent_prior.yaml",

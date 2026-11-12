@@ -6,7 +6,7 @@ import torch
 import torch.distributed as dist
 from omegaconf import OmegaConf
 
-from ..reproduction import hourly_times, read_config
+from ..config import hourly_times, read_config
 from .data import EraDataset, LatentWindows, ObservationDataset
 from .engine import seed_all, train_loop
 from .models import AEProblem, EncoderProblem, PriorProblem, prepare_ae

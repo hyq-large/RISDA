@@ -1,6 +1,5 @@
 __pycache__/
 *.py[cod]
-.ruff_cache/
 *.egg-info/
 /build/
 /dist/

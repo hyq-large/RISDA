@@ -12,9 +12,8 @@ from appa.nn.cae import ConvDecoder, ConvEncoder
 from appa.nn.vit import ViDiT
 from appa.save import safe_load
 
-from ..encoders import ObsToEraEncoder, resolve_surface_preprocessing
-from ..models import EraDecoder
-from ..reproduction import LEVELS
+from ..models import ObsToEraEncoder, resolve_surface_preprocessing, EraDecoder
+from ..data import LEVELS
 
 
 def prepare_ae(config):

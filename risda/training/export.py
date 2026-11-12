@@ -12,7 +12,7 @@ from torch.utils.data import DataLoader
 
 from appa.save import safe_load
 
-from ..reproduction import hourly_times, json_write, read_config
+from ..config import hourly_times, json_write, read_config
 from .data import EraDataset, dataset_identity
 from .engine import atomic_save, autocast, seed_all
 from .models import Autoencoder
