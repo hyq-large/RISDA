@@ -1,0 +1,14 @@
+assimilation_config: assimilation.yaml
+timeline:
+  start: "2025-01-01T00"
+  end: "2025-03-31T23"
+  step_hours: 1
+latent_path: ${oc.env:RISDA_LATENT_DIR}/era5.h5
+output: ${oc.env:RISDA_OUTPUT_ROOT}/calibration
+variance_output: ${oc.env:RISDA_VARIANCE}
+reliability_output: ${oc.env:RISDA_RELIABILITY}
+minimum_count: 2
+seed: 0
+spatial_precision: float32
+satellite_channel_precision: float16
+convi_channel_precision: float32

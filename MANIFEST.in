@@ -1,3 +1,0 @@
-include README.md NOTICE.md run_single.sh
-recursive-include configs *.yaml *.example
-recursive-include tests *.py

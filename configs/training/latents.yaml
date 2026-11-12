@@ -1,0 +1,26 @@
+ae_dir: ${oc.env:RISDA_MODEL_ROOT}/era_autoencoder
+checkpoint: best
+latent_dir: ${oc.env:RISDA_LATENT_DIR}
+data:
+  era5:
+    directory: ${oc.env:RISDA_DATA_ROOT}/era5_hourly
+    coordinate: normalized
+    mean: ${oc.env:RISDA_DATA_ROOT}/era5_hourly/mean_std/era5_1h_mean.npy
+    std: ${oc.env:RISDA_DATA_ROOT}/era5_hourly/mean_std/era5_1h_std.npy
+    grid_shape:
+    - 720
+    - 1440
+  target_mean: ${oc.env:RISDA_MEAN_STD}/mean_era5.npy
+  target_std: ${oc.env:RISDA_MEAN_STD}/std_era5.npy
+dates:
+  export:
+  - 2017-01-01T00
+  - 2025-03-31T23
+  statistics:
+  - 2017-01-01T00
+  - 2024-12-31T23
+batch_size: 1
+num_workers: 4
+precision: float32
+stats_batch_size: 16
+seed: 0

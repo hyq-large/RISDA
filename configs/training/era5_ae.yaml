@@ -1,0 +1,82 @@
+train:
+  update_steps: 100000
+  microbatch: 2
+  batch_size_per_step: 64
+  num_workers: 4
+  precision: float16
+  log_interval: 16
+  save_interval: 128
+  valid_interval: 256
+  validation_samples: 64
+loss:
+  error: mse
+  latitude_weighting: true
+  level_weighting: v1
+  l2_weight: 0.0
+ae:
+  name: cae_f${.resize}c${.lat_channels}
+  shape:
+  - 720
+  - 1440
+  resize: 32
+  saturation: softclip2
+  noise_level: 0.01
+  lat_channels: 128
+  hid_channels:
+  - 128
+  - 256
+  - 384
+  - 512
+  - 768
+  - 1024
+  hid_blocks:
+  - 3
+  - 3
+  - 3
+  - 3
+  - 3
+  - 3
+  pixel_shuffle: true
+  ffn_factor: 1
+  dropout: 0.0
+  patch_size:
+  - 1
+  - 1
+  checkpointing: false
+  identity_init: true
+  vae: false
+optim:
+  optimizer: soap
+  betas:
+  - 0.9
+  - 0.99
+  - 0.99
+  precondition_frequency: 16
+  precondition_size: 4096
+  merge_dims: false
+  learning_rate: 3.0e-05
+  weight_decay: 0.0
+  warmup: 0
+  scheduler: linear
+  grad_clip: 1
+  eps: 1.0e-08
+seed: 0
+dates:
+  training:
+  - 2017-01-01T00
+  - 2024-12-31T23
+  validation:
+  - 2025-01-01T00
+  - 2025-03-31T23
+data:
+  era5:
+    directory: ${oc.env:RISDA_DATA_ROOT}/era5_hourly
+    coordinate: normalized
+    mean: ${oc.env:RISDA_DATA_ROOT}/era5_hourly/mean_std/era5_1h_mean.npy
+    std: ${oc.env:RISDA_DATA_ROOT}/era5_hourly/mean_std/era5_1h_std.npy
+    grid_shape:
+    - 720
+    - 1440
+  target_mean: ${oc.env:RISDA_MEAN_STD}/mean_era5.npy
+  target_std: ${oc.env:RISDA_MEAN_STD}/std_era5.npy
+output_dir: ${oc.env:RISDA_MODEL_ROOT}/era_autoencoder

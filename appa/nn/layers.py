@@ -5,19 +5,6 @@ from einops.layers.torch import Rearrange
 from torch import Tensor, nn
 
 
-def Linear(in_features: int, out_features: int, identity_init: bool = False, **kwargs):
-    linear = nn.Linear(in_features, out_features, **kwargs)
-    if identity_init:
-        id_offset = torch.cat(
-            [torch.eye(in_features)] * (out_features // in_features)
-            + [torch.eye(out_features % in_features, in_features)],
-            dim=0,
-        )
-        linear.weight.data.mul_(0.01)
-        linear.weight.data.add_(id_offset)
-    return linear
-
-
 def ConvNd(
     in_channels: int, out_channels: int, spatial: int = 2, identity_init: bool = False, **kwargs
 ) -> nn.Module:

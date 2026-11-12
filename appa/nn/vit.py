@@ -9,7 +9,7 @@ from torch.utils.checkpoint import checkpoint
 
 from appa.date import get_local_time_encoding, get_year_progress_encoding
 
-from .attention import MultiheadSelfAttention, xfa
+from .attention import MultiheadSelfAttention
 from .layers import Patchify, SineEncoding, Unpatchify
 
 
@@ -159,8 +159,6 @@ class ViT(nn.Module):
             delta = torch.abs(coo[:, None] - coo[None, :])
             delta = torch.minimum(delta, delta.new_tensor(shape) - delta)
             mask = torch.all(delta <= coo.new_tensor(window_size) // 2, dim=-1)
-            if xfa._has_cpp_library:
-                mask = xfa.SparseCS(mask, device=mask.device)._mat
         return (coo.to(dtype=dtype), mask)
 
     def forward(

@@ -63,11 +63,6 @@ def obs2era_encoder_raw_input_channels(config, fallback):
     return int(fallback)
 
 
-def obs2era_encoder_uses_cressman(encoder):
-    encoder = getattr(encoder, "module", encoder)
-    return getattr(encoder, "surface_preprocessing_name", None) == "cressman"
-
-
 class CressmanSurfacePreprocessor(nn.Module):
     def __init__(self, radius=10, eps=0.0001, confidence_ignore=0):
         super().__init__()

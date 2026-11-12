@@ -1,0 +1,60 @@
+train:
+  update_steps: 125000
+  microbatch: 4
+  batch_size_per_step: 256
+  num_workers: 4
+  precision: float16
+  log_interval: 4
+  save_interval: 32
+  valid_interval: 64
+  validation_samples: 32
+  standardize: true
+  blanket_dt: 1
+  anchor_frame: 4
+  anchor_hour_interval: 6
+  noise_schedule: rectified
+  sigma_min: 0.001
+  sigma_max: 1000.0
+  inject_ae_noise: true
+loss:
+  sigma_min_penalty: 0
+latent_data: era5.h5
+backbone:
+  name: vit_large
+  arch: vit
+  mod_features: 256
+  hid_channels: 1024
+  hid_blocks: 16
+  ffn_factor: 4
+  attention_heads: 8
+  qk_norm: true
+  rope: true
+  patch_size:
+  - 2
+  - 1
+  - 1
+  window_size: null
+  dropout: 0.0
+  checkpointing: true
+  blanket_size: 6
+optim:
+  optimizer: adamw
+  betas:
+  - 0.9
+  - 0.99
+  learning_rate: 0.0001
+  weight_decay: 0.0
+  warmup: 0
+  scheduler: null
+  grad_clip: 1
+  eps: 1.0e-08
+latent_dir: ${oc.env:RISDA_LATENT_DIR}
+seed: 0
+dates:
+  training:
+  - 2017-01-01T00
+  - 2024-12-31T23
+  validation:
+  - 2025-01-01T00
+  - 2025-03-31T23
+output_dir: ${oc.env:RISDA_DENOISER_DIR}

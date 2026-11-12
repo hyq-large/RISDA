@@ -1,0 +1,8 @@
+era5:
+  directory: ${oc.env:RISDA_DATA_ROOT}/era5_hourly
+  coordinate: normalized
+  mean: ${oc.env:RISDA_DATA_ROOT}/era5_hourly/mean_std/era5_1h_mean.npy
+  std: ${oc.env:RISDA_DATA_ROOT}/era5_hourly/mean_std/era5_1h_std.npy
+  grid_shape: [720, 1440]
+target_mean: ${oc.env:RISDA_MEAN_STD}/mean_era5.npy
+target_std: ${oc.env:RISDA_MEAN_STD}/std_era5.npy
