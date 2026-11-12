@@ -12,100 +12,6 @@ from appa.nn.cae import ConvDecoder, ConvEncoder
 from appa.nn.triggers import skip_init
 from appa.nn.vit import ViDiT
 from appa.save import safe_load
-from appa.transforms import cressman_interp_multi_channel
-
-
-CRESSMAN_SURFACE_RAW_CHANNELS = 8
-
-
-CRESSMAN_SURFACE_ENCODER_CHANNELS = 9
-
-
-def resolve_surface_preprocessing(config):
-    if config is None:
-        return None
-    if OmegaConf.is_config(config):
-        config = OmegaConf.to_container(config, resolve=True, enum_to_str=True)
-    if isinstance(config, str):
-        raw = {"name": config}
-    elif isinstance(config, dict):
-        if "data" in config:
-            config = config["data"]
-        raw = config.get("surface_preprocessing", config if "name" in config else None)
-    else:
-        raise TypeError(
-            f"surface preprocessing must be a mapping, string, or None; got {type(config).__name__}"
-        )
-    if raw is None:
-        return None
-    if OmegaConf.is_config(raw):
-        raw = OmegaConf.to_container(raw, resolve=True, enum_to_str=True)
-    if isinstance(raw, str):
-        raw = {"name": raw}
-    raw = dict(raw)
-    name = str(raw.get("name", "none")).lower()
-    if name in {"", "none", "disabled"}:
-        return None
-    if name != "cressman":
-        raise ValueError(f"unsupported surface preprocessing: {name!r}")
-    result = {
-        "name": name,
-        "radius": int(raw.get("radius", 10)),
-        "eps": float(raw.get("eps", 0.0001)),
-        "confidence_ignore": int(raw.get("confidence_ignore", 0)),
-    }
-    if result["radius"] < 1:
-        raise ValueError("Cressman radius must be positive")
-    if result["eps"] <= 0.0:
-        raise ValueError("Cressman eps must be positive")
-    if not 0 <= result["confidence_ignore"] < 4:
-        raise ValueError("Cressman confidence_ignore must be in [0, 4)")
-    return result
-
-
-def obs2era_encoder_raw_input_channels(config, fallback):
-    preprocessing = resolve_surface_preprocessing(config)
-    if preprocessing is not None:
-        return CRESSMAN_SURFACE_RAW_CHANNELS
-    return int(fallback)
-
-
-class CressmanSurfacePreprocessor(nn.Module):
-    def __init__(self, radius=10, eps=0.0001, confidence_ignore=0):
-        super().__init__()
-        self.radius = int(radius)
-        self.eps = float(eps)
-        self.confidence_ignore = int(confidence_ignore)
-
-    def forward(self, observations):
-        if observations.ndim != 4:
-            raise ValueError(
-                f"Cressman surface input must have shape (B,8,H,W); got {tuple(observations.shape)}"
-            )
-        if observations.shape[1] != CRESSMAN_SURFACE_RAW_CHANNELS:
-            raise ValueError(
-                f"Cressman surface input must contain [4 values | 4 masks]; got {observations.shape[1]} channels"
-            )
-        original_dtype = observations.dtype
-        with torch.autocast(device_type=observations.device.type, enabled=False):
-            values = observations[:, :4].float().unsqueeze(1)
-            masks = observations[:, 4:8].float().unsqueeze(1)
-            (values_with_confidence, dilated_masks) = cressman_interp_multi_channel(
-                values,
-                masks,
-                confidence_ignore=self.confidence_ignore,
-                R=self.radius,
-                eps=self.eps,
-            )
-            prepared = torch.cat(
-                (
-                    values_with_confidence[:, 0, :4],
-                    dilated_masks[:, 0],
-                    values_with_confidence[:, 0, 4:5],
-                ),
-                dim=1,
-            )
-        return prepared.to(dtype=original_dtype)
 
 
 class ObsToEraEncoder(nn.Module):
@@ -116,36 +22,14 @@ class ObsToEraEncoder(nn.Module):
         shape,
         resize,
         saturation_bound=5.0,
-        surface_preprocessing=None,
         **encoder_kwargs,
     ):
         super().__init__()
-        preprocessing = resolve_surface_preprocessing(surface_preprocessing)
-        self.raw_in_channels = int(in_channels)
-        self.surface_preprocessing = preprocessing
-        self.surface_preprocessing_name = (
-            preprocessing["name"] if preprocessing is not None else None
-        )
-        if preprocessing is None:
-            self.surface_preprocessor = None
-            learned_in_channels = self.raw_in_channels
-        else:
-            if self.raw_in_channels != CRESSMAN_SURFACE_RAW_CHANNELS:
-                raise ValueError(
-                    f"Cressman Encoder expects eight raw channels [4 values | 4 masks]; got {self.raw_in_channels}"
-                )
-            self.surface_preprocessor = CressmanSurfacePreprocessor(
-                radius=preprocessing["radius"],
-                eps=preprocessing["eps"],
-                confidence_ignore=preprocessing["confidence_ignore"],
-            )
-            learned_in_channels = CRESSMAN_SURFACE_ENCODER_CHANNELS
-        self.learned_in_channels = learned_in_channels
         (height, width) = shape
         factor = int(resize)
         padded_size = (height + -height % factor, width + -width % factor + 2 * factor)
         self.encoder = ConvEncoder(
-            in_channels=learned_in_channels,
+            in_channels=int(in_channels),
             out_channels=lat_channels,
             channel_groups=None,
             padded_size=padded_size,
@@ -164,8 +48,6 @@ class ObsToEraEncoder(nn.Module):
         return F.pad(values, (0, 0, pad_h // 2, pad_h - pad_h // 2), mode="constant")
 
     def forward(self, observations):
-        if self.surface_preprocessor is not None:
-            observations = self.surface_preprocessor(observations)
         hidden = self.encoder(self._pad(observations))
         latent = hidden * torch.rsqrt(1 + torch.square(hidden / self.saturation_bound))
         return rearrange(latent, "b c h w -> b (h w) c")
@@ -174,10 +56,8 @@ class ObsToEraEncoder(nn.Module):
 def load_obs2era_encoder(model_dir, era_autoencoder_config, in_channels, checkpoint, device):
     model_dir = Path(model_dir)
     config = OmegaConf.load(model_dir / "config.yaml")
-    preprocessing = resolve_surface_preprocessing(config)
-    raw_in_channels = obs2era_encoder_raw_input_channels(config, in_channels)
     model = ObsToEraEncoder(
-        in_channels=raw_in_channels,
+        in_channels=int(in_channels),
         lat_channels=int(era_autoencoder_config.latent_shape[2]),
         shape=tuple(era_autoencoder_config.shape),
         resize=int(era_autoencoder_config.resize),
@@ -186,7 +66,6 @@ def load_obs2era_encoder(model_dir, era_autoencoder_config, in_channels, checkpo
         kernel_size=int(config.model.kernel_size),
         ffn_factor=int(config.model.get("ffn_factor", 1)),
         dropout=0.0,
-        surface_preprocessing=preprocessing,
         checkpointing=False,
         pixel_shuffle=bool(config.model.get("pixel_shuffle", True)),
         identity_init=bool(config.model.get("identity_init", True)),

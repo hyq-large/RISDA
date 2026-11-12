@@ -85,17 +85,16 @@ class SatelliteObservations:
 
 
 class ConventionalObservations:
-    def __init__(self, surf_dir, icoa_dir, normalization, grid_shape, channel_masks=False):
+    def __init__(self, surf_dir, icoa_dir, normalization, grid_shape):
         self.surf = index_files(surf_dir)
         self.icoa = {} if icoa_dir is None else index_files(icoa_dir)
         mean, std = load_normalization(normalization, "era5", 69)
         self.mean, self.std = mean[:, 65:], std[:, 65:]
         self.grid_shape = tuple(grid_shape)
-        self.channel_masks = bool(channel_masks)
 
     @property
     def input_channels(self):
-        return 8 if self.channel_masks else 5
+        return 8
 
     def _read(self, paths, time):
         if time not in paths:
@@ -115,7 +114,7 @@ class ConventionalObservations:
         finite = np.isfinite(values)
         values = np.where(finite, (values - self.mean) / self.std, 0.0)
         union = finite.any(axis=1, keepdims=True).astype(np.float32)
-        masks = finite.astype(np.float32) if self.channel_masks else union
+        masks = finite.astype(np.float32)
         return torch.from_numpy(np.concatenate([values, masks], axis=1)[0]), torch.from_numpy(
             union[0]
         )

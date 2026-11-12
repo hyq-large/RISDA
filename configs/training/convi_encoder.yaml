@@ -3,11 +3,6 @@ data:
   surf_dir: ${oc.env:RISDA_OBS_ROOT}/convi/surf_qc
   icoa_dir: ${oc.env:RISDA_OBS_ROOT}/convi/icoads_qc
   mean_std_dir: ${oc.env:RISDA_MEAN_STD}
-  surface_preprocessing:
-    name: cressman
-    radius: 10
-    eps: 0.0001
-    confidence_ignore: 0
   era5:
     directory: ${oc.env:RISDA_DATA_ROOT}/era5_hourly
     coordinate: normalized
@@ -67,7 +62,7 @@ optim:
 seed: 0
 dates:
   training:
-  - 2017-01-01T00
+  - 2016-01-01T00
   - 2024-12-31T23
   validation:
   - 2025-01-01T00

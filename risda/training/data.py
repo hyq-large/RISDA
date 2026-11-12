@@ -48,7 +48,7 @@ class ObservationDataset(EraDataset):
         if stage == "convi":
             self.observations = ConventionalObservations(
                 data.surf_dir, data.icoa_dir, data.mean_std_dir,
-                data.era5.grid_shape, channel_masks=True,
+                data.era5.grid_shape,
             )
             available = set(self.observations.surf) | set(self.observations.icoa)
         else:
@@ -65,9 +65,11 @@ class ObservationDataset(EraDataset):
         observations, mask = self.observations.read(self.times[index])
         if tuple(observations.shape[-2:]) != tuple(self.fields.config.grid_shape):
             raise ValueError(f"Observation grid differs from ERA5 at {self.times[index]}")
+        era5_target = super().__getitem__(index)
         if self.stage == "convi":
-            return observations, observations[:4].clone(), observations[4:8].clone()
-        return observations, super().__getitem__(index), mask
+            era5_target = era5_target[-4:]
+            mask = observations[4:8]
+        return observations, era5_target, mask
 
 
 class LatentWindows(Dataset):

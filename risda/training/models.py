@@ -12,7 +12,7 @@ from appa.nn.cae import ConvDecoder, ConvEncoder
 from appa.nn.vit import ViDiT
 from appa.save import safe_load
 
-from ..models import ObsToEraEncoder, resolve_surface_preprocessing, EraDecoder
+from ..models import ObsToEraEncoder, EraDecoder
 from ..data import LEVELS
 
 
@@ -120,7 +120,6 @@ class EncoderProblem(nn.Module):
         self.model = ObsToEraEncoder(
             in_channels=channels, lat_channels=int(ae.latent_shape[-1]),
             shape=tuple(ae.shape), resize=int(ae.resize),
-            surface_preprocessing=resolve_surface_preprocessing(config) if stage == "convi" else None,
             **OmegaConf.to_container(config.model, resolve=True),
         )
         self.decoder = EraDecoder(ae, latent / "ae/model.pth", device)

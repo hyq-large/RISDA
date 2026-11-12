@@ -19,7 +19,7 @@ from appa.save import safe_load
 from .config import ROOT, anchor_times, file_identity, freeze, load_config, setup
 from .data import ConventionalObservations, SatelliteObservations, latent_mask, load_normalization
 from .guidance import Uncertainty, VCLG, sample
-from .models import EraDecoder, load_obs2era_encoder, load_prior, resolve_surface_preprocessing
+from .models import EraDecoder, load_obs2era_encoder, load_prior
 
 
 WINDOW_OFFSETS = (-3, -2, -1, 0, 1, 2)
@@ -49,7 +49,6 @@ def load_sources(config, ae, device):
                 config.data.icoa_dir,
                 config.data.normalization,
                 ae.shape,
-                channel_masks=resolve_surface_preprocessing(model_config) is not None,
             )
         else:
             if model_config.data.get("sate_name") != name:

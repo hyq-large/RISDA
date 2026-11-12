@@ -63,7 +63,7 @@ optim:
 seed: 0
 dates:
   training:
-  - 2017-01-01T00
+  - 2016-01-01T00
   - 2024-12-31T23
   validation:
   - 2025-01-01T00
